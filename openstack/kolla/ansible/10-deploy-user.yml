@@ -1,0 +1,5 @@
+---
+
+- hosts: cluster
+  roles:
+    - role: deploy-user-setup

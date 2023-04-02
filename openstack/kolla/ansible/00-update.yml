@@ -1,0 +1,19 @@
+---
+
+- hosts: cluster
+  become: true
+  tasks:
+  - name: Update all installed packages using APT module
+    ansible.builtin.apt:
+      update_cache: true
+      upgrade: true
+    register: apt_update_status
+
+  - name: Remove packages not needed anymore
+    ansible.builtin.apt:
+      autoremove: true
+
+  - name: Reboot when packages were updated
+    ansible.builtin.reboot:
+      post_reboot_delay: 120
+    when: apt_update_status.changed

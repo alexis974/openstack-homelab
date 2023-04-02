@@ -1,0 +1,14 @@
+---
+- name: restart service systemd-networkd
+  become: true
+  ansible.builtin.systemd:
+    name: systemd-networkd
+    state: restarted
+
+- name: delete octavia veth
+  become: true
+  ansible.builtin.command: ip link delete veth3
+
+- name: apply netplan
+  become: true
+  ansible.builtin.command: netplan apply

@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  role_name: deploy_user_setup
+  author: Luca Corrieri
+  description: >-
+    "A role for configuring a passwordless sudo user on a machine for deployment
+    purposes."
+
+  license: MIT
+
+  min_ansible_version: "2.12"
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags: []
+
+dependencies: []

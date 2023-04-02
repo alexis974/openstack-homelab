@@ -1,0 +1,32 @@
+
+# Openstack
+clouds.yaml
+clouds.yml
+*openrc.sh
+**/kolla/passwords.yml
+**/kolla/certbot/*
+**/kolla/certificates/*
+**/kolla/config/octavia/*
+**/kolla/octavia-certificates/*
+**/kolla/config/swift/*
+
+# Terraform
+.terraform
+.terraform.lock.hcl
+
+# Vim
+*.swp
+
+# Archive
+*.zip
+
+# Image
+*.png
+*.jpg
+*.jpeg
+
+# Video
+*.mp4
+
+# Document
+*.pdf

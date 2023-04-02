@@ -1,0 +1,11 @@
+---
+
+- name: laptops specific configuration
+  hosts: laptops
+  become: true
+  tasks:
+    - name: Ignore lid closing
+      ansible.builtin.lineinfile:
+        path: /etc/systemd/logind.conf
+        regexp: 'HandleLidSwitch=*'
+        line: HandleLidSwitch=ignore

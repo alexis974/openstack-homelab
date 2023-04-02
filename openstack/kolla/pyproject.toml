@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "openstack-homelab"
+version = "0.1.0"
+description = ""
+authors = [
+    "Alexis Boissiere <alexis.boissiere@epita.fr>",
+    "Luca Corrieri <luca.corrieri@epita.fr>",
+]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+ansible = "^5.7.1"
+kolla-ansible = {git = "https://opendev.org/openstack/kolla-ansible", rev = "stable/zed"}
+python-openstackclient = "^5.8.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,35 @@
+# This is the network config written by 'openstack-veth-config' ansible role
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    {{ network_interface }}:
+      dhcp4: false
+      mtu: {{ mtu }}
+    veth1:
+      mtu: {{ mtu }}
+    veth2:
+      mtu: {{ mtu }}
+{% if enable_octavia %}
+    veth3:
+      mtu: {{ mtu }}
+    veth4:
+      mtu: {{ mtu }}
+{% endif %}
+  bridges:
+    {{ bridge_name }}:
+      mtu: {{ mtu }}
+      addresses:
+        - {{ ansible_default_ipv4["address"] }}/24
+      routes:
+        - to: 0.0.0.0/0
+          via: {{ gateway_ipv4 }}
+      nameservers:
+        addresses: {{ dns_ipv4 }}
+        search: []
+      interfaces:
+        - {{ network_interface }}
+        - veth1
+{% if enable_octavia %}
+        - veth3
+{% endif %}

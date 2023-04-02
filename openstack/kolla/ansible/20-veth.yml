@@ -1,0 +1,10 @@
+---
+
+- hosts: cluster
+  roles:
+    - role: openstack-veth-config
+      vars:
+        - network_interface: eno1
+        - gateway_ipv4: 192.168.30.1
+        - enable_octavia: true
+        - mtu: 1550

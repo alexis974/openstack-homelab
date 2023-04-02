@@ -1,0 +1,24 @@
+---
+- name: Copy veth config file of neutron
+  ansible.builtin.copy:
+    src: 25-veth-openstack-neutron.netdev
+    dest: /lib/systemd/network/25-veth-openstack-neutron.netdev
+    mode: "0644"
+  notify: "restart service systemd-networkd"
+
+- name: Copy veth config file of octavia
+  ansible.builtin.copy:
+    src: 26-veth-openstack-octavia.netdev
+    dest: /lib/systemd/network/26-veth-openstack-octavia.netdev
+    mode: "0644"
+  notify: "restart service systemd-networkd"
+  when: enable_octavia
+
+- name: Remove veth config file of octavia
+  ansible.builtin.file:
+    path: /lib/systemd/network/26-veth-openstack-octavia.netdev
+    state: absent
+  notify:
+    - "restart service systemd-networkd"
+    - "delete octavia veth"
+  when: not enable_octavia

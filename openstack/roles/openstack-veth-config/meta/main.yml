@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  role_name: openstack_veth_config
+  author: Alexis Boissiere
+  description: >-
+    "Configure network for an openstack deployement on host with only one
+    ethernet port"
+
+  license: MIT
+
+  min_ansible_version: "2.12"
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags: []
+
+dependencies: []

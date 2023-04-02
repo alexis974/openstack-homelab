@@ -1,0 +1,9 @@
+---
+- hosts: cluster
+  become: true
+  tasks:
+
+  - name: "Shutting down all node"
+    community.general.shutdown:
+      msg: "Shutting down node"
+

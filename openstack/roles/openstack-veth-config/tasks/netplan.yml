@@ -1,0 +1,22 @@
+---
+- name: list netplan files to delete
+  ansible.builtin.find:
+    paths: /etc/netplan
+    file_type: file
+    excludes:
+      - "00-openstack-config.yaml"
+  register: found_files
+
+- name: delete netplan files
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ found_files['files'] }}"
+  notify: "apply netplan"
+
+- name: copy openstack netplan config file
+  ansible.builtin.template:
+    src: 00-openstack-config.j2
+    dest: "/etc/netplan/00-openstack-config.yaml"
+    mode: "0644"
+  notify: "apply netplan"

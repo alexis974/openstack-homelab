@@ -1,0 +1,8 @@
+---
+- name: configure systemd-networkd
+  become: true
+  import_tasks: systemd-networkd.yml
+
+- name: configure netplan
+  become: true
+  import_tasks: netplan.yml
